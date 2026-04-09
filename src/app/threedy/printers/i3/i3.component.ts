@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, effect, ElementRef, inject, input, OnInit, signal, viewChild } from '@angular/core';
+import { Component, computed, DestroyRef, effect, ElementRef, inject, Injector, input, OnInit, signal, viewChild } from '@angular/core';
 import { ThreedyService } from '../../services/threedy.service';
 import { ThreedyCondition } from '../../types';
 import { getI3Dimensions, I3Dimensions } from './i3-utils';
@@ -11,6 +11,7 @@ import { getI3Dimensions, I3Dimensions } from './i3-utils';
 export class I3Component implements OnInit {
   private readonly threedy = inject(ThreedyService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly injector = inject(Injector);
 
   readonly printerConfig = input.required<Record<string, unknown>>();
 
@@ -70,7 +71,7 @@ export class I3Component implements OnInit {
       } else {
         this.stopGantryAnimation();
       }
-    }, { injector: inject(DestroyRef) as never });
+    }, { injector: this.injector });
 
     this.setupResizeObserver();
 
@@ -102,7 +103,7 @@ export class I3Component implements OnInit {
         }
       });
       this.resizeObserver.observe(el.nativeElement);
-    });
+    }, { injector: this.injector });
   }
 
   private startGantryAnimation(maxWidth: number): void {

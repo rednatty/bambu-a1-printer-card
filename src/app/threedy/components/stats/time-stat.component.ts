@@ -1,4 +1,4 @@
-import { Component, DestroyRef, effect, inject, input, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, effect, inject, Injector, input, OnInit, signal } from '@angular/core';
 import { StatComponent } from './stat.component';
 import { ThreedyService } from '../../services/threedy.service';
 import { HassEntity, ThreedyCondition } from '../../types';
@@ -12,6 +12,7 @@ import { getTotalSeconds, renderTime } from './stats-utils';
 export class TimeStatComponent implements OnInit {
   private readonly threedy = inject(ThreedyService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly injector = inject(Injector);
 
   readonly name = input.required<string>();
   readonly timeEntity = input.required<HassEntity | undefined>();
@@ -39,7 +40,7 @@ export class TimeStatComponent implements OnInit {
       this.intervalId = setInterval(() => {
         this.time.update((t) => t + dir);
       }, 1000);
-    });
+    }, { injector: this.injector });
 
     this.destroyRef.onDestroy(() => {
       if (this.intervalId !== null) {

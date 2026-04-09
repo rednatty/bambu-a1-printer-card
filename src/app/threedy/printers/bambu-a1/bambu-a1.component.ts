@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, effect, ElementRef, inject, input, OnInit, signal, viewChild } from '@angular/core';
+import { Component, computed, DestroyRef, effect, ElementRef, inject, Injector, input, OnInit, signal, viewChild } from '@angular/core';
 import { ThreedyService } from '../../services/threedy.service';
 import { ThreedyCondition } from '../../types';
 import { getBambuA1Dimensions, BambuA1Dimensions } from './bambu-a1-utils';
@@ -11,6 +11,7 @@ import { getBambuA1Dimensions, BambuA1Dimensions } from './bambu-a1-utils';
 export class BambuA1Component implements OnInit {
   private readonly threedy = inject(ThreedyService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly injector = inject(Injector);
 
   readonly printerConfig = input.required<Record<string, unknown>>();
 
@@ -68,7 +69,7 @@ export class BambuA1Component implements OnInit {
       } else {
         this.stopToolheadAnimation();
       }
-    });
+    }, { injector: this.injector });
 
     this.setupResizeObserver();
 
@@ -100,7 +101,7 @@ export class BambuA1Component implements OnInit {
         }
       });
       this.resizeObserver.observe(el.nativeElement);
-    });
+    }, { injector: this.injector });
   }
 
   private startToolheadAnimation(maxWidth: number): void {

@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, effect, ElementRef, inject, input, OnInit, signal, viewChild } from '@angular/core';
+import { Component, computed, DestroyRef, effect, ElementRef, inject, Injector, input, OnInit, signal, viewChild } from '@angular/core';
 import { ThreedyService } from '../../services/threedy.service';
 import { ThreedyCondition } from '../../types';
 import { getCantileverDimensions, CantileverDimensions } from './cantilever-utils';
@@ -11,6 +11,7 @@ import { getCantileverDimensions, CantileverDimensions } from './cantilever-util
 export class CantileverComponent implements OnInit {
   private readonly threedy = inject(ThreedyService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly injector = inject(Injector);
 
   readonly printerConfig = input.required<Record<string, unknown>>();
 
@@ -68,7 +69,7 @@ export class CantileverComponent implements OnInit {
       } else {
         this.stopGantryAnimation();
       }
-    });
+    }, { injector: this.injector });
 
     this.setupResizeObserver();
 
@@ -100,7 +101,7 @@ export class CantileverComponent implements OnInit {
         }
       });
       this.resizeObserver.observe(el.nativeElement);
-    });
+    }, { injector: this.injector });
   }
 
   private startGantryAnimation(maxWidth: number): void {
