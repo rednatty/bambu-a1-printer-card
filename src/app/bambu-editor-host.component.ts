@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, input } from '@angular/core';
+import { Component, ElementRef, inject, input, ViewEncapsulation } from '@angular/core';
 import { ConfiguratorComponent } from './threedy/configurator/configurator.component';
 import { HomeAssistant, ThreedyConfig } from './threedy/types';
 
@@ -6,6 +6,7 @@ import { HomeAssistant, ThreedyConfig } from './threedy/types';
   selector: 'bambu-editor-host',
   template: `<app-configurator [hass]="hass()!" [config]="config()" [threedyElement]="hostElement" />`,
   imports: [ConfiguratorComponent],
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class BambuEditorHostComponent {
   private readonly elementRef = inject(ElementRef);
