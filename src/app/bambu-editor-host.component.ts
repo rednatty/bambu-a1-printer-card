@@ -15,7 +15,9 @@ export class BambuEditorHostComponent {
   readonly config = input<ThreedyConfig>();
 
   get hostElement(): HTMLElement {
-    return this.elementRef.nativeElement;
+    const element = this.elementRef.nativeElement as HTMLElement;
+    const host = element.getRootNode() instanceof ShadowRoot ? (element.getRootNode() as ShadowRoot).host : undefined;
+    return (host as HTMLElement | undefined) ?? element;
   }
 }
 

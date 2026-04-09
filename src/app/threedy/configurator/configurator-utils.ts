@@ -1,5 +1,7 @@
 import { HomeAssistant, ThreedyConfig } from '../types';
 
+const DEFAULT_CARD_TYPE = 'custom:bambu-printer-card';
+
 export function printerName(entityId: string | undefined): string | undefined {
   if (!entityId) return undefined;
   return entityId
@@ -49,11 +51,16 @@ export interface ConfigEventDetail {
 }
 
 export function updateConfig(threedy: HTMLElement, modifiedConfig: ThreedyConfig, updates: Partial<ThreedyConfig>): ThreedyConfig {
+  const mergedConfig = { ...modifiedConfig, ...updates } as ThreedyConfig;
+  if (!mergedConfig.type) {
+    mergedConfig.type = DEFAULT_CARD_TYPE;
+  }
+
   const event = new CustomEvent<ConfigEventDetail>('config-changed', {
     bubbles: true,
     composed: true,
     detail: {
-      config: { ...modifiedConfig, ...updates },
+      config: mergedConfig,
     },
   });
   threedy.dispatchEvent(event);
