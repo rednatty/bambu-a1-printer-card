@@ -1,0 +1,10 @@
+<button
+  class="cfg-button"
+  [class.active]="active()"
+  (click)="onClick()"
+  (mousedown)="active.set(true)"
+  (mouseup)="active.set(false)"
+  (mouseleave)="active.set(false)">
+  <ng-content />
+</button>
+

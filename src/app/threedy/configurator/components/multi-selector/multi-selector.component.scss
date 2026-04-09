@@ -1,0 +1,73 @@
+.multi-selector {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+.item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.selector-button {
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.1);
+  outline: none;
+  border: none;
+  margin-right: 16px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-text-color);
+  cursor: pointer;
+}
+
+.position-buttons {
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.2s, transform 0.2s;
+
+  &.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.position-button {
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  margin-left: 16px;
+  color: var(--primary-text-color);
+  cursor: pointer;
+}
+
+.item-text {
+  flex-grow: 1;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 24px;
+}
+
+.deselected {
+  text-decoration: line-through;
+  font-style: oblique;
+  color: #777777;
+}
+

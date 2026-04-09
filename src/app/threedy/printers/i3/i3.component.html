@@ -1,0 +1,51 @@
+<div class="i3" #container>
+  @if (dimensions(); as dims) {
+    <div class="scalable" [style.width.px]="dims.Scalable.width" [style.height.px]="dims.Scalable.height">
+
+      <div class="frame"
+           [style.width.px]="dims.Frame.width"
+           [style.height.px]="dims.Frame.height">
+        <div class="hole"
+             [style.width.px]="dims.Hole.width"
+             [style.height.px]="dims.Hole.height"
+             [style.left.px]="dims.Hole.left"
+             [style.top.px]="dims.Hole.top"></div>
+      </div>
+
+      <div class="build-area"
+           [style.width.px]="dims.BuildArea.width"
+           [style.height.px]="dims.BuildArea.height"
+           [style.left.px]="dims.BuildArea.left"
+           [style.top.px]="dims.BuildArea.top">
+        <div class="print" [style.height.%]="progress() * 100"></div>
+      </div>
+
+      <div class="build-plate"
+           [style.width.px]="dims.BuildPlate.width"
+           [style.left.px]="dims.BuildPlate.left"
+           [style.top.px]="dims.BuildPlate.top"></div>
+
+      <div class="x-axis"
+           [style.width.px]="dims.XAxis.width"
+           [style.height.px]="dims.XAxis.height"
+           [style.left.px]="dims.XAxis.left"
+           [style.top.px]="dims.XAxis.top"
+           [style.transform]="'translateY(' + (progress() * -1 * dims.BuildArea.height) + 'px)'">
+      </div>
+
+      <div class="gantry"
+           [style.width.px]="dims.Gantry.width"
+           [style.height.px]="dims.Gantry.height"
+           [style.left.px]="dims.Gantry.left"
+           [style.top.px]="dims.Gantry.top"
+           [style.transform]="'translate(' + gantryXPos() + 'px, ' + (progress() * -1 * dims.BuildArea.height) + 'px)'">
+        <div class="nozzle"
+             [style.width.px]="dims.Nozzle.width"
+             [style.height.px]="dims.Nozzle.height"
+             [style.left.px]="dims.Nozzle.left"
+             [style.top.px]="dims.Nozzle.top"></div>
+      </div>
+    </div>
+  }
+</div>
+

@@ -1,0 +1,11 @@
+<div class="few-selector">
+  @for (key of optionKeys; track key; let i = $index) {
+    <button
+      class="few-option"
+      [style.opacity]="activeIndex() === i ? 1 : 0.35"
+      (click)="selectOption(i)">
+      {{ key }}
+    </button>
+  }
+</div>
+

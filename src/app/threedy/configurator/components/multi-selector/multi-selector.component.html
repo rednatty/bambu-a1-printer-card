@@ -1,0 +1,19 @@
+<div class="multi-selector" [style.height.px]="stock.length * 56">
+  @for (item of stock; track item) {
+    <div class="item" [style.transform]="'translateY(' + getY(item) + 'px)'">
+      <button class="selector-button" (click)="toggle(item)">
+        @if (isSelected(item)) {
+          <span>✓</span>
+        }
+      </button>
+
+      <p class="item-text" [class.deselected]="!isSelected(item)">{{ item }}</p>
+
+      <div class="position-buttons" [class.visible]="isSelected(item)">
+        <button class="position-button" (click)="reorder(item, 1)">▾</button>
+        <button class="position-button" (click)="reorder(item, -1)">▴</button>
+      </div>
+    </div>
+  }
+</div>
+

@@ -1,0 +1,20 @@
+.stat {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2px 0;
+}
+
+.stat-text {
+  margin: 0;
+  font-size: 16px;
+  display: inline-block;
+}
+
+.condition {
+  font-weight: bold;
+}
+

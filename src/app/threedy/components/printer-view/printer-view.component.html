@@ -1,0 +1,14 @@
+<div class="printer-view" [style.cursor]="hasCamera() ? 'pointer' : 'default'" (click)="onPrinterClick()">
+  @switch (printerType()) {
+    @case ('Cantilever') {
+      <app-cantilever-printer [printerConfig]="printerConfig()" />
+    }
+    @case ('BambuA1') {
+      <app-bambu-a1-printer [printerConfig]="printerConfig()" />
+    }
+    @default {
+      <app-i3-printer [printerConfig]="printerConfig()" />
+    }
+  }
+</div>
+

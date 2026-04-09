@@ -1,0 +1,105 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.bambu-a1 {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scalable {
+  position: relative;
+}
+
+.frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  border: 3px solid #555555;
+  background-color: transparent;
+}
+
+.lid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #666666;
+}
+
+.base {
+  position: absolute;
+  left: 0;
+  background-color: #666666;
+}
+
+.x-rail {
+  position: absolute;
+  border-radius: 4px;
+  background-color: #888888;
+  transition: transform 0.3s ease-out;
+}
+
+.build-plate {
+  box-sizing: border-box;
+  border-radius: 4px;
+  position: absolute;
+  background-color: #aaaaaa;
+  height: 8px;
+}
+
+.toolhead {
+  background-color: #cccccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  position: absolute;
+  will-change: transform;
+  border: 2px solid #999999;
+}
+
+.nozzle {
+  background-color: #ff9800;
+  position: absolute;
+  clip-path: polygon(100% 0, 100% 50%, 50% 80%, 0 50%, 0 0);
+}
+
+.build-area {
+  background-color: rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.print {
+  background-color: var(--primary-text-color);
+  width: 100%;
+}
+
+.spool {
+  position: absolute;
+  border-radius: 6px;
+  background-color: #777777;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spool-filament {
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  background-color: #ff9800;
+  border: 2px solid #e68900;
+}
+

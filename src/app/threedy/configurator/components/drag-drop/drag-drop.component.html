@@ -1,0 +1,32 @@
+<div class="drag-drop">
+  <div class="column">
+    <p class="column-text">In Use</p>
+    <div
+      cdkDropList
+      #inUseList="cdkDropList"
+      [cdkDropListData]="inUse()"
+      [cdkDropListConnectedTo]="[availableList]"
+      class="drag-drop-area"
+      (cdkDropListDropped)="drop($event)">
+      @for (item of inUse(); track item) {
+        <div class="item" cdkDrag>{{ item }}</div>
+      }
+    </div>
+  </div>
+
+  <div class="column">
+    <p class="column-text">Available</p>
+    <div
+      cdkDropList
+      #availableList="cdkDropList"
+      [cdkDropListData]="available()"
+      [cdkDropListConnectedTo]="[inUseList]"
+      class="drag-drop-area"
+      (cdkDropListDropped)="drop($event)">
+      @for (item of available(); track item) {
+        <div class="item" cdkDrag>{{ item }}</div>
+      }
+    </div>
+  </div>
+</div>
+
