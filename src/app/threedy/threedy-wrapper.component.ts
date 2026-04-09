@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, effect } from '@angular/core';
+import { Component, effect, inject, input } from '@angular/core';
 import { ThreedyService } from './services/threedy.service';
 import { HomeAssistant, ThreedyConfig } from './types';
 import { CardComponent } from './components/card/card.component';
@@ -9,7 +9,7 @@ import { NotConfiguredComponent } from './components/not-configured/not-configur
   templateUrl: './threedy-wrapper.component.html',
   imports: [CardComponent, NotConfiguredComponent],
 })
-export class ThreedyWrapperComponent implements OnInit {
+export class ThreedyWrapperComponent {
   private readonly threedy = inject(ThreedyService);
 
   readonly hass = input<HomeAssistant>();
@@ -17,7 +17,7 @@ export class ThreedyWrapperComponent implements OnInit {
 
   readonly hasData = this.threedy.hasData;
 
-  ngOnInit(): void {
+  constructor() {
     effect(() => {
       const hass = this.hass();
       if (hass) this.threedy.hass.set(hass);
