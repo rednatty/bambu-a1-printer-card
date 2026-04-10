@@ -1,0 +1,25 @@
+.few-selector {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.few-option {
+  border: none;
+  outline: none;
+  padding: 0 32px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 48px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--primary-text-color);
+  margin: 0 16px;
+  flex-grow: 1;
+  transition: opacity 0.15s ease-in-out;
+}
+

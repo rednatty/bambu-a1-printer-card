@@ -1,0 +1,57 @@
+<div
+  class="card"
+  [style.box-shadow]="boxShadow()"
+  [style.border-radius.px]="cardBorderRadius()">
+
+  <div class="root">
+    <!-- Header -->
+    <div class="header" [style.justify-content]="headerJustify()">
+
+      @if (config()?.light_entity && !config()?.power_entity) {
+        <div class="power-button"></div>
+      }
+
+      @if (config()?.power_entity) {
+        <button
+          class="power-button"
+          [style.color]="powerOn() ? 'var(--paper-item-icon-active-color)' : 'var(--primary-text-color)'"
+          (click)="onTogglePower()">
+          ⏻
+        </button>
+      }
+
+      <button class="name-status" type="button">
+        <div class="status-dot" [style.background-color]="statusColor()"></div>
+        <p class="header-text">{{ config()?.name || '(no name)' }}</p>
+      </button>
+
+      @if (config()?.light_entity) {
+        <button
+          class="power-button"
+          [style.color]="lightOn() ? 'var(--paper-item-icon-active-color)' : 'var(--primary-text-color)'"
+          (click)="onToggleLight()">
+          💡
+        </button>
+      }
+
+      @if (config()?.power_entity && !config()?.light_entity) {
+        <div class="power-button"></div>
+      }
+    </div>
+
+    <!-- Content -->
+    <div
+      class="content"
+      [style.flex-direction]="vertical() ? 'column' : 'row'">
+      <div
+        class="section"
+        [style.padding-left.px]="16"
+        [style.padding-right.px]="16"
+        [style.width]="'100%'"
+        [style.height]="vertical() ? 'auto' : '100%'">
+        <app-stats [showPercent]="true" />
+      </div>
+    </div>
+  </div>
+</div>
+

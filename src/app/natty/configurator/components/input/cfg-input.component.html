@@ -1,0 +1,12 @@
+<div class="wrapper">
+  <input
+    class="cfg-input"
+    [class.active]="active()"
+    [placeholder]="placeholder()"
+    [value]="value()"
+    (input)="onChange($any($event.target).value)"
+    (focus)="active.set(true)"
+    (blur)="active.set(false)"
+  />
+</div>
+
