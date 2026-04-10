@@ -1,0 +1,11 @@
+<div class="camera-root" [class.visible]="visible()">
+  <div
+    class="wrapper"
+    [style.background]="backgroundUrl"
+    [style.background-size]="'cover'"
+    [style.background-position]="'center'"
+    [style.transform]="cameraTransform"
+    (click)="onWrapperClick()">
+  </div>
+</div>
+

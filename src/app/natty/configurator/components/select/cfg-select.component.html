@@ -1,0 +1,18 @@
+<div class="select">
+  <button
+    class="select-button"
+    [class.active]="active()"
+    (click)="showOptions()"
+    (mouseenter)="active.set(true)"
+    (mouseleave)="active.set(false)">
+    {{ selection() || placeholder() }}
+    <span class="chevron">▾</span>
+  </button>
+
+  <div class="options" [class.visible]="!hidden()">
+    @for (key of optionKeys; track key) {
+      <button class="option" (click)="selectOption(key)">{{ key }}</button>
+    }
+  </div>
+</div>
+

@@ -1,0 +1,89 @@
+<div
+  class="card"
+  [style.box-shadow]="boxShadow()"
+  [style.border-radius.px]="cardBorderRadius()">
+
+  <div class="root">
+    <!-- Header -->
+    <div class="header" [style.justify-content]="headerJustify()">
+
+      @if (config()?.light_entity && !config()?.power_entity) {
+        <div class="power-button"></div>
+      }
+
+      @if (config()?.power_entity) {
+        <button
+          class="power-button"
+          [style.color]="powerOn() ? 'var(--paper-item-icon-active-color)' : 'var(--primary-text-color)'"
+          (click)="onTogglePower()">
+          ⏻
+        </button>
+      }
+
+      <button class="name-status" (click)="toggleHiddenOverride()">
+        <div class="status-dot" [style.background-color]="statusColor()"></div>
+        <p class="header-text">{{ config()?.name || '(no name)' }}</p>
+      </button>
+
+      @if (config()?.light_entity) {
+        <button
+          class="power-button"
+          [style.color]="lightOn() ? 'var(--paper-item-icon-active-color)' : 'var(--primary-text-color)'"
+          (click)="onToggleLight()">
+          💡
+        </button>
+      }
+
+      @if (config()?.power_entity && !config()?.light_entity) {
+        <div class="power-button"></div>
+      }
+    </div>
+
+    <!-- Content -->
+    <div
+      class="content"
+      [class.hidden]="hidden()"
+      [style.flex-direction]="vertical() ? 'column' : 'row'">
+
+      <div
+        class="section"
+        [style.width]="vertical() ? '100%' : '50%'"
+        [style.height]="vertical() ? 'auto' : '100%'"
+        [style.display]="'flex'"
+        [style.flex-direction]="'row'"
+        [style.justify-content]="'space-between'"
+        [style.padding-left.px]="vertical() ? 64 : 16"
+        [style.padding-right.px]="vertical() ? 64 : 16">
+
+        <app-printer-view
+          [toggleVideo]="toggleVideoFn"
+          [hasCamera]="!!config()?.camera_entity"
+          [style.width]="vertical() ? 'auto' : '100%'"
+          [style.flex-grow]="1"
+        />
+
+        @if (vertical()) {
+          <p class="vertical-percent">{{ displayPercent() }}%</p>
+        }
+      </div>
+
+      <div
+        class="section"
+        [style.padding-left.px]="vertical() ? 32 : 16"
+        [style.padding-right.px]="vertical() ? 32 : 32"
+        [style.width]="vertical() ? '100%' : '50%'"
+        [style.height]="vertical() ? 'auto' : '100%'">
+        <app-stats [showPercent]="!vertical()" />
+      </div>
+    </div>
+  </div>
+
+  @if (cameraEntity(); as camEntity) {
+    <app-camera
+      [visible]="showVideo()"
+      [cameraEntity]="camEntity"
+      [toggleVideo]="hideVideoFn"
+    />
+  }
+</div>
+

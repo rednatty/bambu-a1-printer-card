@@ -1,0 +1,4 @@
+<div class="printer-view" [style.cursor]="hasCamera() ? 'pointer' : 'default'" (click)="onPrinterClick()">
+  <app-bambu-a1-printer [printerConfig]="printerConfig()" />
+</div>
+

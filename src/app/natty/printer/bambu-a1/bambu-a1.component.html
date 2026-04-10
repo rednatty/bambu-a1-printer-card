@@ -1,0 +1,69 @@
+<div class="bambu-a1" #container>
+  @if (dimensions(); as dims) {
+    <div class="scalable" [style.width.px]="dims.Scalable.width" [style.height.px]="dims.Scalable.height">
+
+      <!-- Outer frame -->
+      <div class="frame"
+           [style.width.px]="dims.Frame.width"
+           [style.height.px]="dims.Frame.height"
+           [style.border-radius.px]="dims.Frame.cornerRadius">
+      </div>
+
+      <!-- Top lid -->
+      <div class="lid"
+           [style.width.px]="dims.Lid.width"
+           [style.height.px]="dims.Lid.height"
+           [style.border-radius]="dims.Frame.cornerRadius + 'px ' + dims.Frame.cornerRadius + 'px 0 0'">
+      </div>
+
+      <!-- Base -->
+      <div class="base"
+           [style.width.px]="dims.Base.width"
+           [style.height.px]="dims.Base.height"
+           [style.top.px]="dims.Base.top"
+           [style.border-radius]="'0 0 ' + dims.Frame.cornerRadius + 'px ' + dims.Frame.cornerRadius + 'px'">
+      </div>
+
+      <!-- Build area -->
+      <div class="build-area"
+           [style.width.px]="dims.BuildArea.width"
+           [style.height.px]="dims.BuildArea.height"
+           [style.left.px]="dims.BuildArea.left"
+           [style.top.px]="dims.BuildArea.top">
+        <div class="print" [style.height.%]="progress() * 100"></div>
+      </div>
+
+      <!-- Build plate -->
+      <div class="build-plate"
+           [style.width.px]="dims.BuildPlate.width"
+           [style.left.px]="dims.BuildPlate.left"
+           [style.top.px]="dims.BuildPlate.top">
+      </div>
+
+      <!-- X rail -->
+      <div class="x-rail"
+           [style.width.px]="dims.XRail.width"
+           [style.height.px]="dims.XRail.height"
+           [style.left.px]="dims.XRail.left"
+           [style.top.px]="dims.XRail.top"
+           [style.transform]="'translateY(' + (-1 * progress() * dims.BuildArea.height) + 'px)'">
+      </div>
+
+      <!-- Toolhead with nozzle -->
+      <div class="toolhead"
+           [style.width.px]="dims.Toolhead.width"
+           [style.height.px]="dims.Toolhead.height"
+           [style.left.px]="dims.Toolhead.left"
+           [style.top.px]="dims.Toolhead.top"
+           [style.transform]="'translate(' + toolheadXPos() + 'px, ' + (-1 * progress() * dims.BuildArea.height) + 'px)'">
+        <div class="nozzle"
+             [style.width.px]="dims.Nozzle.width"
+             [style.height.px]="dims.Nozzle.height"
+             [style.left.px]="dims.Nozzle.left"
+             [style.top.px]="dims.Nozzle.top">
+        </div>
+      </div>
+    </div>
+  }
+</div>
+
