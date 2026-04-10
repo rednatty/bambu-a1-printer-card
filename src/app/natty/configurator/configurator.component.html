@@ -1,0 +1,99 @@
+@if (config()) {
+  <div class="root">
+    <div class="configurator">
+
+      <p class="label">Printer</p>
+      <app-cfg-select
+        placeholder="Select..."
+        [options]="printers()"
+        [initial]="initialPrinterName()"
+        (onSelect)="updateConfigValue('base_entity', $event.value)"
+      />
+
+      @if (modifiedConfig()?.base_entity) {
+
+        <p class="label">Name</p>
+        <app-cfg-input
+          placeholder="Name"
+          [initial]="config()?.name || modifiedConfig()?.name || ''"
+          (onUpdate)="updateConfigValue('name', $event)"
+        />
+
+        <p class="label">Monitored</p>
+        <app-multi-selector
+          [items]="BambuLabCondition"
+          [initial]="(config()?.monitored ?? [])"
+          (onChange)="updateConfigValue('monitored', $event)"
+        />
+
+        <div class="button-container">
+          <app-cfg-button (btnClick)="advancedShown.set(true)">Advanced</app-cfg-button>
+        </div>
+      }
+    </div>
+
+    @if (modifiedConfig()?.base_entity) {
+      <div class="advanced" [class.visible]="advancedShown()">
+        <div class="button-container" style="justify-content: flex-start">
+          <div class="configurator">
+
+            <app-cfg-button (btnClick)="advancedShown.set(false)">Back</app-cfg-button>
+
+            <p class="label">Always show</p>
+            <app-yes-no-select
+              placeholder="Select..."
+              [initial]="config()?.always_show ?? false"
+              (onSelect)="updateConfigValue('always_show', $event)"
+            />
+
+            <p class="label">Round Time</p>
+            <app-few-selector
+              [options]="yesNoOptions"
+              [initial]="config()?.round_time || modifiedConfig()?.round_time"
+              (onUpdate)="updateConfigValue('round_time', $event.value)"
+            />
+
+            <p class="label">Round Temperature</p>
+            <app-few-selector
+              [options]="yesNoOptions"
+              [initial]="config()?.round_temperature || modifiedConfig()?.round_temperature"
+              (onUpdate)="updateConfigValue('round_temperature', $event.value)"
+            />
+
+            <p class="label">Temperature Unit</p>
+            <app-few-selector
+              [options]="tempUnitOptions"
+              [initial]="config()?.temperature_unit || modifiedConfig()?.temperature_unit"
+              (onUpdate)="updateConfigValue('temperature_unit', $event.value)"
+            />
+
+            <p class="label">Use 24hr Time</p>
+            <app-few-selector
+              [options]="yesNoOptions"
+              [initial]="config()?.use_24hr || modifiedConfig()?.use_24hr"
+              (onUpdate)="updateConfigValue('use_24hr', $event.value)"
+            />
+
+
+            <p class="label">Power Entity</p>
+            <app-cfg-select
+              placeholder="Select..."
+              [options]="toggleables()"
+              [initial]="config()?.power_entity || modifiedConfig()?.power_entity"
+              (onSelect)="updateConfigValue('power_entity', $event.value)"
+            />
+
+            <p class="label">Light Entity</p>
+            <app-cfg-select
+              placeholder="Select..."
+              [options]="toggleables()"
+              [initial]="config()?.light_entity || modifiedConfig()?.light_entity"
+              (onSelect)="updateConfigValue('light_entity', $event.value)"
+            />
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+}
+

@@ -1,0 +1,85 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--ha-card-border-radius, 4px);
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.name-status {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 16px;
+  cursor: default;
+  gap: 8px;
+}
+
+.header-text {
+  margin: 0;
+}
+
+.header-percent {
+  margin: 0;
+  font-size: 0.9em;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.section {
+  box-sizing: border-box;
+  padding: 0 8px 16px 8px;
+}
+
+.status-dot {
+  margin: 0 10px;
+  height: 10px;
+  width: 10px;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.power-button {
+  width: 32px;
+  height: 32px;
+  box-sizing: border-box;
+  padding: 0;
+  margin-right: 12px;
+  margin-left: 12px;
+  cursor: pointer;
+}
+
+

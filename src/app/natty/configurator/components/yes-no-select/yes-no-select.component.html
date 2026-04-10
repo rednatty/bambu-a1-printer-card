@@ -1,0 +1,16 @@
+<div class="select" (click)="$event.stopPropagation()">
+  <button
+    class="select-button"
+    type="button"
+    (click)="showOptions()">
+    {{ selection() || placeholder() }}
+    <span>▾</span>
+  </button>
+
+  <div class="options" [class.visible]="!hidden()">
+    @for (option of options; track option.key) {
+      <button class="option" type="button" (click)="selectOption(option)">{{ option.key }}</button>
+    }
+  </div>
+</div>
+

@@ -1,0 +1,24 @@
+<div class="stats">
+  <div class="monitored">
+    @for (item of statItems(); track item.name) {
+      @switch (item.type) {
+        @case ('stat') {
+          <app-stat [name]="item.name" [value]="item.value ?? '-'" />
+        }
+        @case ('temperature') {
+          <app-temperature-stat [name]="item.name" [temperatureEntity]="item.temperatureEntity" />
+        }
+        @case ('time') {
+          <app-time-stat
+            [name]="item.name"
+            [timeEntity]="item.timeEntity"
+            [condition]="item.condition!"
+            [direction]="item.direction ?? 0"
+            [attr]="item.attr"
+          />
+        }
+      }
+    }
+  </div>
+</div>
+

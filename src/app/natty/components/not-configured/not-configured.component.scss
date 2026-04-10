@@ -1,0 +1,9 @@
+.not-configured {
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--ha-card-border-radius, 4px);
+  box-shadow: var(--ha-card-box-shadow);
+}
+

@@ -1,0 +1,49 @@
+.select {
+  width: 100%;
+  position: relative;
+}
+
+.select-button {
+  width: 100%;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.options {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--ha-card-box-shadow);
+  z-index: 999999;
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+  pointer-events: none;
+
+  &.visible {
+    opacity: 1;
+    transform: scaleY(1);
+    pointer-events: auto;
+  }
+}
+
+.option {
+  width: 100%;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  text-align: left;
+  cursor: pointer;
+}

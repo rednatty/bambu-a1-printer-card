@@ -1,0 +1,9 @@
+<div class="wrapper">
+  <input
+    class="cfg-input"
+    [placeholder]="placeholder()"
+    [value]="value()"
+    (input)="onChange($any($event.target).value)"
+  />
+</div>
+
